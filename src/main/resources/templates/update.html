@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<head lang="en">
+<meta charset="utf-8" />
+<title>USCS Appointment Creator</title>
+
+<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+<script th:src="@{/js/mainJs.js}"></script>
+
+
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<table>
+				<tr>
+					<td>
+						<div class="headerImage">
+							<img th:src="@{/images/errorLogo_test.png}" alt="HTML5 Icon"
+								style="width: 170px; height: 210px;" />
+						</div>
+
+					</td>
+					<td>
+						<div class="headerText">
+							<h1>Data POC</h1>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+
+		<div th:if="${dtSuccess == true}">
+			<div class="alert alert-success" role="alert" align="center">
+				<label>Receipt now has an appointment linked to it!</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="tab1default">
+								<form class="form-horizontal" action="updateDataInfo"
+									th:object="${driverVO}">
+
+									<div class="spacerVereticalSm"></div>
+
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Driver Number: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value= "${driverVO.driverNumber}" name="driverNumber" readonly="readonly"/>
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Driver ID: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.driverID}" name="driverID" />
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Driver First Name: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.firstName}" name="firstName" />
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Driver Last Name: </label>
+											</div>
+											
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.lastName}" name="lastName"/>
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Driver Contact Number: </label>
+											</div>
+											
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.contactNumber}" name="contactNumber"/>
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Birth Date: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control"  th:value="${driverVO.birthDate}" name="birthDate"/>
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Issue Flag: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.issueFlag}" name="issueFlag"/>
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Create Timestamp: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.createTS}" name="createTS" readonly="readonly"/>
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Create User: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.createUsr}" name="createUsr" readonly="readonly"/>
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Update Timestamp: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.updateTS}" name="updateTS" />
+											</div>
+										</div>
+									</div>
+									<div class="padBtm">
+										<div class="form-group row">
+											<div class="col-sm-3">
+												<label>Update User: </label>
+											</div>
+											<div class="col-sm-2">
+
+												<input type="text" class="form-control" th:value="${driverVO.updateUsr}" name="updateUsr"/>
+											</div>
+										</div>
+									</div>
+									<div class="spacerVereticalSm"></div>
+									<div class="spacerVereticalSm"></div>
+
+									<button type="reset" class="btn btn">
+										<div class="warningText">Clear Form</div>
+									</button>
+									<button type="submit" class="btn btn-primary"
+										id="createAppointmentBtn">Update Data</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
